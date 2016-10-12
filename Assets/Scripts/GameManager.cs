@@ -16,22 +16,15 @@ public class GameManager : MonoBehaviour
         {
             return Instance;
         }
-
     }
 
     //-----------------------------------------------
     private static GameManager instance = null;
     //-----------------------------------------------
-    //HighScore
-    public int highScore = 0;
-    // Is game paused
-    public bool isPaused = false;
-    //Is player input allowed
-    public bool inputAllowed = true;
-    // First level Rules Button
-    public Button rulesBtn;
-    //first level
-    public bool isFirstLevel = false;
+    public int highScoreTotal = 0;//HighScore
+    public bool isPaused = false;// Is game paused
+    public bool inputAllowed = false;//Is player input allowed
+    private int currentScore = 0;
     //Use this for initialization before Start()
     void Awake()
     {
@@ -67,17 +60,26 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Win");
         }
-        /*if (Input.GetKeyDown("keypad"))
-        {
-            SceneManager.LoadScene("MainMenu");
-        }*/
     }
-    public void RemoveCanvas()
+    // Calling the FirstLvl function, loads scene
+    public void FirstLvl()
     {
-        rulesBtn.enabled = false; 
+        SceneManager.LoadScene("InGame");
+    }
+
+    // use this function to add to the score. 
+    public int UpdateScore(int AmountToAdd, bool PrintToConsole = true)
+    {
+        currentScore += AmountToAdd;
+
+        //print to the console?
+        if (PrintToConsole)
+        {
+            Debug.Log("Score is: " + currentScore.ToString());
+        }
+        return currentScore; // output current score
     }
     
-
 }
 
 
