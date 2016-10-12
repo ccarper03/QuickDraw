@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 // Game Manager Class - Singleton Object
@@ -27,6 +28,10 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
     //Is player input allowed
     public bool inputAllowed = true;
+    // First level Rules Button
+    public Button rulesBtn;
+    //first level
+    public bool isFirstLevel = false;
     //Use this for initialization before Start()
     void Awake()
     {
@@ -67,6 +72,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }*/
     }
+    public void RemoveCanvas()
+    {
+        rulesBtn.enabled = false; 
+    }
+    
+
 }
 
 
