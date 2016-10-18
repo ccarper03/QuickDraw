@@ -3,13 +3,15 @@ using System.Collections;
 
 public class Gameplay : MonoBehaviour {
 
-	//the following are variables to store the multiple accessories for the enemy character to be randomly generated
-	public GameObject[] body;
-	public GameObject[] head;
-	public GameObject[] shirt;
-	public GameObject[] pants; //shirt and pants may be one variable or part of the body
-	public GameObject[] accessory1;
-	//miscellaneous accessories for the enemy may be optional
+	//player character
+	public GameObject player;
+	//may not need to instantiate player
+
+	//variables for prefabs of enemy characters
+	public GameObject enemy1;
+	public GameObject enemy2;
+	public GameObject enemy3;
+	public GameObject enemy4;
 
 	//timer(s) to keep track of high noon
 	float lengthOfTime;
@@ -18,21 +20,25 @@ public class Gameplay : MonoBehaviour {
 	//keep track of levels
 	public int level = 1;
 
-	//boolean(s) to check and keep track of events
-	bool cursorInBox;
+	//HolsterBox mouseBoxCheck = GetComponent<HolsterBox>();
+	public bool mouseBoxCheck;
 
 	// Use this for initialization
 	void Start () {
 		//need to know what the period of time should be
-		lengthOfTime = Random.Range (3f, 12f);
+		lengthOfTime = Random.Range (2f, 10f);
 		timer = lengthOfTime;
 
+
 		//instantiate the enemy
-		//?check to instantiate either randomly generated character or specific character i.e. first and boss enemies??
+
+		mouseBoxCheck = GameObject.Find ("GunHolsteredHitBox").GetComponent<HolsterBox> ().mouseBoxCheck;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		mouseBoxCheck = GameObject.Find ("GunHolsteredHitBox").GetComponent<HolsterBox> ().mouseBoxCheck;
+		Debug.Log (mouseBoxCheck);
 		//if statement to check if the cursor is NOT in the box
 		//{
 			//if timer >= 0
